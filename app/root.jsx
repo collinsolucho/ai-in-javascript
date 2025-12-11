@@ -1,5 +1,6 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
@@ -32,6 +33,33 @@ export function Layout({ children }) {
         <Links />
       </head>
       <body>
+        <nav className="flex justify-between items-center px-6 py-4 bg-amber-300 lg:py-8 max-w-5xl mx-auto">
+          <Link to="/" className="bg-amber-700 text-white rounded-sm p-1">
+            <span>Lesson1</span>
+          </Link>
+
+          <Link
+            to="/lesson2"
+            className="bg-amber-700 text-white rounded-sm p-1"
+          >
+            {" "}
+            <span>Lesson2</span>
+          </Link>
+          <Link
+            to="/lesson3"
+            className="bg-amber-700 text-white rounded-sm p-1"
+          >
+            {" "}
+            <span>Lesson3</span>
+          </Link>
+          <Link
+            to="/lesson4"
+            className="bg-amber-700 text-white rounded-sm p-1"
+          >
+            {" "}
+            <span>Lesson4</span>
+          </Link>
+        </nav>
         {children}
         <ScrollRestoration />
         <Scripts />

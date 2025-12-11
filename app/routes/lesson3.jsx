@@ -26,7 +26,7 @@ export default function Home() {
     loadModel();
   }, []);
 
-  const handleImageUpload = (e) => {
+  let handleImageUpload = (e) => {
     // Get the first selected file from the input element
     const file = e.target.files[0];
 
@@ -46,6 +46,14 @@ export default function Home() {
     // Start reading the file as a Data URL (Base64 encoded image)
     reader.readAsDataURL(file);
   };
+  const [loadingModel, setLoadingModel] = useState(true);
+
+  useEffect(() => {
+    mobilenet.load().then((loaded) => {
+      setModel(loaded);
+      setLoadingModel(false);
+    });
+  }, []);
 
   let classifyImage = async () => {
     if (!model || !imgRef.current) return;
@@ -59,6 +67,8 @@ export default function Home() {
       <p className="text-lg font-bold mb-6">
         using user input to classify their images as either cats and Dogs
       </p>
+      {loadingModel && <p>Loading model… please wait</p>}
+
       <input
         type="file"
         accept="image/*"

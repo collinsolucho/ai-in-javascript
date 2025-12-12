@@ -59,6 +59,13 @@ export function Layout({ children }) {
             {" "}
             <span>Lesson4</span>
           </Link>
+          <Link
+            to="/lesson5"
+            className="bg-amber-700 text-white rounded-sm p-1"
+          >
+            {" "}
+            <span>Lesson5</span>
+          </Link>
         </nav>
         {children}
         <ScrollRestoration />

@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { Welcome } from "../welcome/welcome";
 import * as tf from "@tensorflow/tfjs";
 
 export function meta() {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "TensorFlow in ReactRouter" },
+    { name: "description", content: "Welcome to Learning TensorFow.js!" },
   ];
 }
 

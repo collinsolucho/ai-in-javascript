@@ -1,0 +1,53 @@
+ Installation & Setup Instructions
+mkdir (folderName)
+cd (folderName)
+code .
+npx create-react-router@latest --template remix-run/react-router-templates/javascript
+npm install @tensorflow/tfjs (this runs on the client side ) 
+npm install @tensorflow-models/mobilenet
+npm run dev
+
+tf.tensor a key word that changes input to tensor data
+
+day one looked at meaning of tensor,model,prediction vs training
+understood the diffrence between 
+1. npm install @tensorflow/tfjs-node(this runs on the server with nodejs) 
+2. npm install @tensorflow/tfjs (this runs on the client side )
+tf.tensor is running inside use effect since its retruns a side effect after ui renders
+tensor.shapes  eg [2, 3] → 2 rows, 3 columns
+        Tells you the dimensions of the tensor.
+        Returns an array showing length along each axis.
+tensor.size eg // 2 * 3 = 6
+        Tells you the total number of elements in the tensor.
+        Returns a single number (product of all dimensions)
+2D Tensor (Matrix)
+        Think of it as a table: rows × columns
+        Shape: [rows, columns]
+3D Tensor eg ✅ 2 “blocks”, each 2 rows × 2 columns
+        Adds another dimension, like a stack of 2D matrices
+        Shape: [depth, rows, columns] (or [height, width, channels] for images)
+using a pretrained model (MobileNet) to run simple predictions
+>>>>> instalation .... npm install @tensorflow-models/mobilenet
+use await tf.ready() this guarantees TensorFlow.js is fully loaded.
+await tf.setBackend("webgl") TensorFlow.js which engine to use for computation.
+Backend	Speed	Use Case
+webgl	🚀 Fast (GPU)	Best for ML tasks, image models
+cpu	🐢 Slow	Fallback; debugging
+wasm	⚡ Fast CPU	Some tasks faster than plain CPU
+//crossOrigin="anonymous" 
+This attribute tells the browser:“Load this image/video/script from another domain WITHOUT sending cookies or user credentials.”
+A univariate regression model predicts an output using one input variable only.
+A dense layer is a grid of neurons where each node listens to all inputs (eg a discussion where an answer is raised after everyone listens to comments from previous group)
+
+
+const model = tf.sequential();
+
+model.add(tf.layers.dense({
+  units: 1,       // one output neuron
+  inputShape: [1] // one input number
+}));
+
+model.compile({
+  loss: "meanSquaredError",
+  optimizer: "sgd",
+});

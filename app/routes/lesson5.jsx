@@ -4,7 +4,7 @@ import * as tf from "@tensorflow/tfjs";
 export default function NeuralInput() {
   // Stores the number the user typed
   const [userNumber, setUserNumber] = useState(null);
-
+  const [trainingModel, setTrainingModel] = useState(true); // Loading indicator
   // Stores the model prediction result
   const [prediction, setPrediction] = useState(null);
 
@@ -48,7 +48,7 @@ export default function NeuralInput() {
           },
         },
       });
-
+      setTrainingModel(false); // mark model as trained
       // Save the trained model so we can use it later
       modelRef.current = model;
     }
@@ -100,7 +100,10 @@ export default function NeuralInput() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <h1 className="text-3xl font-bold mb-6">Day 8 — First Neural Network</h1>
       <p className="text-lg font-semibold mb-4">Using user input</p>
-
+      {/* Show loading message while model is loading */}
+      {trainingModel && (
+        <p className="text-blue-600 italic mb-2">Model Training… please wait</p>
+      )}
       <input
         type="number"
         placeholder="Enter a Number"

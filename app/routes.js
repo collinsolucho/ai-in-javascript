@@ -9,6 +9,6 @@ export default [
   route("lesson6", "routes/lesson6.jsx"),
   route("lesson7", "routes/lesson7.jsx"),
   route("lesson8", "routes/lesson8.jsx"),
-  route("lesson9", "routes/lesson9.jsx"),
-  route("lesson10", "routes/lesson10.jsx"),
+  // route("lesson9", "routes/lesson9.jsx"),
+  // route("lesson10", "routes/lesson10.jsx"),
 ];

@@ -18,8 +18,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       <h1 className="text-2xl font-bold">Tensor Created ✅</h1>
+      <p className="text-lg font-bold mb-6">
+        Open your console to see training logs and prediction output.
+      </p>
     </div>
   );
 }

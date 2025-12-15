@@ -83,7 +83,7 @@ export default function Home() {
   // Render JSX
   // ------------------------
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+    <div className="min-h-screen flex flex-col items-center justify-center  p-6">
       <h1 className="text-3xl font-bold mb-6">Ai Image Classifier</h1>
       <p className="text-lg font-bold mb-6">
         Using user input to classify their images as either cats and dogs

@@ -61,6 +61,9 @@ export default function Home() {
       {predictions.length > 0 && (
         <div className="bg-white p-4 rounded shadow w-full max-w-md">
           <h2 className="text-xl font-semibold mb-2">Predictions:</h2>
+          <p className="text-lg font-bold mb-6">
+            Open your console to see training logs and prediction output.
+          </p>
           {predictions.map((p, index) => (
             <div key={index} className="flex justify-between">
               <span>{p.className}</span>

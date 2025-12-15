@@ -97,9 +97,11 @@ export default function NeuralInput() {
   // UI SECTION
   // =======================================
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+    <div className="min-h-screen flex flex-col items-center justify-center  p-6">
       <h1 className="text-3xl font-bold mb-6">Day 8 — First Neural Network</h1>
-      <p className="text-lg font-semibold mb-4">Using user input</p>
+      <p className="text-lg font-semibold mb-4">
+        Using user input to predict outcomes
+      </p>
       {/* Show loading message while model is loading */}
       {trainingModel && (
         <p className="text-blue-600 italic mb-2">Model Training… please wait</p>

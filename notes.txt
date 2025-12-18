@@ -26,28 +26,83 @@ tensor.size eg // 2 * 3 = 6
 3D Tensor eg ✅ 2 “blocks”, each 2 rows × 2 columns
         Adds another dimension, like a stack of 2D matrices
         Shape: [depth, rows, columns] (or [height, width, channels] for images)
+MAKING PREDICTONS(Regression)
 using a pretrained model (MobileNet) to run simple predictions
 >>>>> instalation .... npm install @tensorflow-models/mobilenet
 use await tf.ready() this guarantees TensorFlow.js is fully loaded.
 await tf.setBackend("webgl") TensorFlow.js which engine to use for computation.
-Backend	Speed	Use Case
-webgl	🚀 Fast (GPU)	Best for ML tasks, image models
-cpu	🐢 Slow	Fallback; debugging
-wasm	⚡ Fast CPU	Some tasks faster than plain CPU
+Backend	        Speed	                 Use Case
+webgl	        🚀 Fast (GPU)	         Best for ML tasks, image models
+cpu	        🐢 Slow	Fallback;        debugging
+wasm	        ⚡ Fast CPU	        Some tasks faster than plain CPU
 //crossOrigin="anonymous" 
 This attribute tells the browser:“Load this image/video/script from another domain WITHOUT sending cookies or user credentials.”
 A univariate regression model predicts an output using one input variable only.
 A dense layer is a grid of neurons where each node listens to all inputs (eg a discussion where an answer is raised after everyone listens to comments from previous group)
+A neuron is a tiny computational unit that takes input, performs a calculation, and produces an output.
+A neuron = takes inputs → multiplies by weights → adds bias → applies activation function → gives output.
+Units = number of neurons in the layer. //more units more power
+weights = whats learned/answers
 
+MODEL ARCHITURE 
+                model.add(tf.layers.dense({ units: 1, inputShape: [1] }));
 
-const model = tf.sequential();
+LOSS FUNCTION 
+                          model.compile({
+                        loss: "meanSquaredError",// predicts numbers
+                        optimizer: "sgd", //tells model how to update
+                        });
+Activation functions decide what output each neuron should produce.
+🔥 Common Activation Functions
+Activation	Meaning	                                  Common Use
+ReLU	     Turns negatives into 0, keeps positives	Hidden layers (default)
+Sigmoid	     Output between 0 and 1	               Binary classification
+Softmax	     Turns outputs into probabilities	       Multi-class classification
+Linear	     No activation	                       Regression (predicting numbers)
+Backpropagation is making guess while comparing correct output while adjusting weights to reduce error
+epochs repeating cycles to get better
+optimizer an algorithm that tells the model how to update its weights to learn better.
+Common Optimizers
+adam → most popular, fast, stable
+sgd → simple but slow
+rmsprop → handles noisy data well
+loss Function measures how wrong the model’s prediction is.
+🧠 Common Loss Functions
+Loss	                        Used For
+meanSquaredError	        Regression (predicting numbers)
+categoricalCrossentropy	        Multi-class classification
+binaryCrossentropy	        Yes/No classification
+Batch size = how many samples the model processes at one time before updating weights.
+inputShape → Defines the shape of the input data the first layer expects.Only needed in the first layer.
+tf.layers.dense() is used to create a Dense (Fully Connected) layer
+tf.sequential() keyword used to create a simple, linear neural network model.
+Compile → Sets the optimizer and loss function to train the model.
+🔍 Explanation:
+Keyword	                          Meaning
+xs	                Input data (features)
+ys	                Target data (labels)
+epochs: 50	        Train over the entire dataset 50 times
+callbacks.onEpochEnd	Function executed after each epoch; here we log the loss
+logs.loss	        Shows the current error the model has
+.predict() is the inference function that asks the model to predict with given data
+.fit() is the training function for your neural network. tells the model>>
+“Here’s the input data and the correct output. Learn the patterns to make predictions.”
+DESSION MAKING (classification)>> return true/false,,yes/no,,0/1
+Eg is 2 an even number ()
 
-model.add(tf.layers.dense({
-  units: 1,       // one output neuron
-  inputShape: [1] // one input number
-}));
+model architecture
+                        model.add(tf.layers.dense({
+                        units: 1,
+                        inputShape: [1],
+                         activation: "sigmoid", // output value 0&1
+                        }));
 
-model.compile({
-  loss: "meanSquaredError",
-  optimizer: "sgd",
-});
+loss function 
+                        model.compile({
+                        loss: "binaryCrossentropy",
+                        optimizer: "adam",
+                        });
+
+training example
+        const xs = tf.tensor([1,2,3,4,5,6,7,8,9,10]);
+        const ys = tf.tensor([0,1,0,1,0,1,0,1,0,1]); // even = 1

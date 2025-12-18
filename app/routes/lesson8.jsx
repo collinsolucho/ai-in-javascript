@@ -17,7 +17,8 @@ export default function MultiClassClassifier() {
         tf.layers.dense({ units: 8, inputShape: [1], activation: "relu" })
       );
       model.add(tf.layers.dense({ units: 3, activation: "softmax" }));
-
+      //3 units define the 3 neurons 4 small,medium,large
+      //softmax takes output from neurons & converts 2 probality distribution
       model.compile({
         loss: "categoricalCrossentropy",
         optimizer: "adam",
@@ -39,8 +40,9 @@ export default function MultiClassClassifier() {
         [12],
         [13],
       ]);
-
+      // : Ensure your xs and ys tensors have the exact same number of elements (the outer dimension)
       const ys = tf.tensor([
+        // this called one-hot encoding. instead of 0,1 use a vector with length equal 2 the no of classes (3)
         [1, 0, 0],
         [1, 0, 0],
         [1, 0, 0],
@@ -72,9 +74,14 @@ export default function MultiClassClassifier() {
       .dataSync();
 
     const classes = ["Small", "Medium", "Large"];
+    //The model outputs three probabilities (e.g., [0.05, 0.85, 0.10]).
+    // Math.max(...prediction) finds the highest probability (e.g., 0.85).
+    // maxIndex finds the index of that highest probability (e.g., index 1).
     const maxIndex = prediction.indexOf(Math.max(...prediction));
 
     setLabel(classes[maxIndex]);
+    // The index is mapped to the final class label using the classes array (classes[1] is "Medium").
+    // The confidence is simply that maximum probability.
     setConfidence((prediction[maxIndex] * 100).toFixed(2));
   }
 

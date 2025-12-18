@@ -11,8 +11,15 @@ export default function EvenOddClassifier() {
       let model = tf.sequential();
       model.add(
         tf.layers.dense({
-          units: 1,
+          units: 8,
           inputShape: [1],
+          activation: "relu", // ReLU is generally better for hidden layers
+        })
+      );
+
+      model.add(
+        tf.layers.dense({
+          units: 1,
           activation: "sigmoid",
         })
       );
